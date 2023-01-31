@@ -1,4 +1,5 @@
 import sys
+from functools import partial
 
 from PyQt6.QtWidgets import (
     QApplication,
@@ -9,12 +10,12 @@ from PyQt6.QtWidgets import (
 )
 
 
-def greet():
+def greet(name):
     # create the chosen text that will be used to greet
     if msgLabel.text():
         msgLabel.setText("")
     else:
-        msgLabel.setText("Hello World!")
+        msgLabel.setText(f"Hello, {name}!")
 
 
 # set up the instance of the application
@@ -25,7 +26,7 @@ layout = QVBoxLayout()
 
 # create the button to give the greeting
 button = QPushButton("Greet")
-button.clicked.connect(greet)
+button.clicked.connect(partial(greet, "Travis"))
 
 # Add the Widgets and create the 
 layout.addWidget(button)
